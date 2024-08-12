@@ -1,0 +1,34 @@
+﻿# This file defines the blocks
+block "L"
+	100 111
+	01 01 11
+	111 001
+	11 10 10
+end block
+block "Reversed L"
+	001 111
+	11 01 01
+	111 100
+	10 10 11
+end block
+block "T"
+	111 010
+	10 11 10
+	010 111
+	01 11 01
+end block
+block "Z"
+	110 011
+	01 11 10
+end block
+block "Reversed Z"
+	011 110
+	10 11 01
+end block
+block "Pipe"
+	1111
+	1 1 1 1
+end block
+block "Square"
+	11 11
+end block
