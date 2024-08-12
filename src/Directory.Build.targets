@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <Authors>daxnet</Authors>
+    <Copyright>Copyright (C) 2020-2024 by daxnet</Copyright>
+    <PackageVersion>$(TetrisPackageVersion)</PackageVersion>
+    <Version>$(TetrisPackageVersion)</Version>
+  </PropertyGroup>
+</Project>
