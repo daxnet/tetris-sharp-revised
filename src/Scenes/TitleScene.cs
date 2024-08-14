@@ -51,8 +51,6 @@ internal sealed class TitleScene(TetrisGame game, string name) : Scene(game, nam
 
     private readonly FontSystem _fontSystem = new();
 
-    private BackgroundMusic? _bgm;
-    private Song? _bgmSong;
     private bool _disposed;
     private Menu? _menu;
     private DynamicSpriteFont? _menuFont;
@@ -74,14 +72,11 @@ internal sealed class TitleScene(TetrisGame game, string name) : Scene(game, nam
         {
             loadGameMenuItem.Enabled = GameAs<TetrisGame>().CanLoadGame;
         }
-
-        _bgm?.Play();
     }
 
     public override void Leave(bool closing = false)
     {
         Mouse.SetCursor(MouseCursor.Arrow);
-        _bgm?.Stop();
     }
 
     public override void Load(ContentManager contentManager)
@@ -89,10 +84,6 @@ internal sealed class TitleScene(TetrisGame game, string name) : Scene(game, nam
         // Fonts
         _fontSystem.AddFont(File.ReadAllBytes(@"res\main.ttf"));
         _menuFont = _fontSystem.GetFont(30);
-
-        // Background music
-        _bgmSong = contentManager.Load<Song>(@"sounds\opening");
-        _bgm = new BackgroundMusic([_bgmSong], .2f);
 
         // Background images
         var backgroundImageTexture = contentManager.Load<Texture2D>("images\\title");
@@ -111,7 +102,6 @@ internal sealed class TitleScene(TetrisGame game, string name) : Scene(game, nam
         };
 
         Add(_menu);
-        Add(_bgm);
 
         SubscribeMessages();
     }
@@ -126,8 +116,6 @@ internal sealed class TitleScene(TetrisGame game, string name) : Scene(game, nam
         {
             if (disposing)
             {
-                _bgm?.Stop();
-                _bgmSong?.Dispose();
                 _fontSystem.Dispose();
             }
 

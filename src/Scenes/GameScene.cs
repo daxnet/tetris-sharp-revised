@@ -62,7 +62,7 @@ internal sealed class GameScene(TetrisGame game, string name)
     private readonly Queue<int> _tetrisQueue = new();
     private readonly Texture2D[] _tileTextures = new Texture2D[Constants.TileTextureCount];
     private BackgroundMusic? _bgm;
-    private Song? _bgmSong;
+    private List<Song> _bgmSongs = new();
     private Block? _block;
     private int _blocks;
     private int _boardX;
@@ -172,8 +172,12 @@ internal sealed class GameScene(TetrisGame game, string name)
         _mergeSound = new Sound(_mergeSoundEffect, Constants.SoundVolume);
         _removeRowSoundEffect = contentManager.Load<SoundEffect>(@"sounds\remove_row");
         _removeRowSound = new Sound(_removeRowSoundEffect, Constants.SoundVolume);
-        _bgmSong = contentManager.Load<Song>(@"sounds\bgm");
-        _bgm = new BackgroundMusic([_bgmSong], Constants.BgmVolume);
+        for (var i = 1; i <= 4; i++)
+        {
+            _bgmSongs.Add(contentManager.Load<Song>(@$"sounds\bgm{i}"));
+        }
+
+        _bgm = new BackgroundMusic(_bgmSongs, Constants.BgmVolume);
 
         // Fonts & static texts
         _mainFontSystem.AddFont(File.ReadAllBytes(@"res\main.ttf"));
@@ -295,7 +299,7 @@ internal sealed class GameScene(TetrisGame game, string name)
                 _removeRowSound?.Stop();
                 _removeRowSoundEffect?.Dispose();
                 _bgm?.Stop();
-                _bgmSong?.Dispose();
+                _bgmSongs.ForEach(b => b.Dispose());
                 _mainFontSystem.Dispose();
             }
 
