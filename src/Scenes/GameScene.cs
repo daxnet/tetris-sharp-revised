@@ -166,25 +166,25 @@ internal sealed class GameScene(TetrisGame game, string name)
             Viewport.Width - Constants.NumberOfTilesX * 25 - 30 - 2 * _boardX, Viewport.Height - 2 * _boardY);
 
         // Sound & music
-        _gameOverSoundEffect = contentManager.Load<SoundEffect>(@"sounds\gameover");
+        _gameOverSoundEffect = contentManager.Load<SoundEffect>("sounds/gameover");
         _gameOverSound = new Sound(_gameOverSoundEffect, Constants.SoundVolume);
-        _mergeSoundEffect = contentManager.Load<SoundEffect>(@"sounds\merge");
+        _mergeSoundEffect = contentManager.Load<SoundEffect>("sounds/merge");
         _mergeSound = new Sound(_mergeSoundEffect, Constants.SoundVolume);
-        _removeRowSoundEffect = contentManager.Load<SoundEffect>(@"sounds\remove_row");
+        _removeRowSoundEffect = contentManager.Load<SoundEffect>("sounds/remove_row");
         _removeRowSound = new Sound(_removeRowSoundEffect, Constants.SoundVolume);
         for (var i = 1; i <= 4; i++)
         {
-            _bgmSongs.Add(contentManager.Load<Song>(@$"sounds\bgm{i}"));
+            _bgmSongs.Add(contentManager.Load<Song>($"sounds/bgm{i}"));
         }
 
         _bgm = new BackgroundMusic(_bgmSongs, Constants.BgmVolume);
 
         // Fonts & static texts
-        _mainFontSystem.AddFont(File.ReadAllBytes(@"res\main.ttf"));
+        _mainFontSystem.AddFont(File.ReadAllBytes("res/main.ttf"));
         _scoreBoardFont = _mainFontSystem.GetFont(38);
         _gameOverFont = _mainFontSystem.GetFont(70);
         _pauseTextFont = _mainFontSystem.GetFont(70);
-        var arialFont = contentManager.Load<SpriteFont>(@"fonts\arial");
+        var arialFont = contentManager.Load<SpriteFont>("fonts/arial");
         var copyrightTextSize = arialFont.MeasureString(Constants.CopyrightText);
         var copyrightTextX = _scoreBoardBoundingBox.X + _scoreBoardBoundingBox.Width - copyrightTextSize.X;
         var copyrightTextY = _scoreBoardBoundingBox.Bottom - copyrightTextSize.Y;
@@ -194,10 +194,10 @@ internal sealed class GameScene(TetrisGame game, string name)
         // Load block tile textures
         for (var i = 1; i <= Constants.TileTextureCount; i++)
         {
-            _tileTextures[i - 1] = contentManager.Load<Texture2D>($@"tiles\{i}");
+            _tileTextures[i - 1] = contentManager.Load<Texture2D>($"tiles/{i}");
         }
 
-        _fixedTileTexture = contentManager.Load<Texture2D>(@"tiles\tile_fixed");
+        _fixedTileTexture = contentManager.Load<Texture2D>("tiles/tile_fixed");
 
         // Set up the game board
         _gameboardTexture = CreateGameBoardTexture();

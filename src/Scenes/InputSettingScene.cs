@@ -70,7 +70,7 @@ internal sealed class InputSettingScene(TetrisGame game, string name)
 
     public override void Load(ContentManager contentManager)
     {
-        _fontSystem.AddFont(File.ReadAllBytes(@"res\main.ttf"));
+        _fontSystem.AddFont(File.ReadAllBytes("res/main.ttf"));
         _titleFont = _fontSystem.GetFont(56);
         _inputConfigPanelFont = _fontSystem.GetFont(36);
         _menuFont = _fontSystem.GetFont(30);

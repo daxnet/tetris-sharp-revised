@@ -82,11 +82,11 @@ internal sealed class TitleScene(TetrisGame game, string name) : Scene(game, nam
     public override void Load(ContentManager contentManager)
     {
         // Fonts
-        _fontSystem.AddFont(File.ReadAllBytes(@"res\main.ttf"));
+        _fontSystem.AddFont(File.ReadAllBytes("res/main.ttf"));
         _menuFont = _fontSystem.GetFont(30);
 
         // Background images
-        var backgroundImageTexture = contentManager.Load<Texture2D>("images\\title");
+        var backgroundImageTexture = contentManager.Load<Texture2D>("images/title");
         Add(new Image(this, backgroundImageTexture));
 
         _menu = new Menu(this, new FontStashSharpAdapter(_menuFont), [
